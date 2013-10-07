@@ -1,0 +1,64 @@
+<% content_for :body_content_left do %>
+  <div class="body_content_left">
+    <div class="post_content">
+      <div class="head_post">
+        <div class="top"></div>
+        <div class="middle">
+          <p class="back"><a href="<%= blog_root_url %>">View all posts</a></p>
+          <h1><%= @blog_post.title %></h1>
+          <p class='posted_at'><%= @blog_post.created_at.strftime("#{to_ordinal(@blog_post.created_at.day)} of %B, %Y") %></p>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="middle_white">
+        <%= raw @blog_post.body %>
+      </div>
+      <div class="bottom_grey">
+        <a href="<%= blog_root_url %>">Back to posts</a>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :body_content_right do %>
+<div class="body_content_right">
+
+  <div class="categories">
+    <div class="top"></div>
+    <div class="middle">
+      <div class="head">
+        <h4>Categories</h4>
+        <p>News categorized</p>
+        <span class="line"></span>
+      </div>
+      <ul id="categories_list">
+        <%= render :partial => "/blog/shared/categories" %>
+      </ul>
+    </div>
+    <div class="bottom">
+      <p class="feed"><a href="#">subscribe to our news feed</a></p>
+    </div>
+  </div>
+
+  <div class="space40"></div>
+
+  <div class="news">
+    <div class="top"></div>
+    <div class="middle">
+      <div class="head">
+        <h4>More news</h4>
+        <p>News in other related blogs</p>
+        <span class="line"></span>
+      </div>
+      <ul id="news_list"></ul>
+    </div>
+    <div class="bottom">
+      <p class="feed"><a href="#">subscribe to our news feed</a></p>
+    </div>
+  </div>
+
+</div>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
+<% content_for :head, stylesheet_link_tag('refinerycms-blog') %>

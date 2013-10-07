@@ -1,0 +1,5 @@
+<% @blog_categories.each do |category| %>
+<li<%= " class='selected'" if @category.present? and @category.id == category.id %>>
+<h5><%= link_to "#{category.title} (#{category.posts.count})", blog_category_url(category) %></h5>
+</li>
+<% end %>

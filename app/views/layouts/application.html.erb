@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unlimited Shelf - <%= controller_name %> - <%= action_name %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="shortcut icon" href="/images/favicon.ico"/>
+  <%= raw stylesheet_link_merged :base %>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <%= raw javascript_include_merged :base %>
+</head>
+
+<% if (controller_name == 'home') %>
+  <body class="background_v1">
+<%elsif (controller_name=='features') %>
+  <body class="background_v2">
+<%elsif (controller_name=='events')%>
+  <body class="background_v2">
+<%elsif ((controller_name=='posts')||(controller_name=='categories'))%>
+  <body class="background_v2">
+<%elsif (action_name == 'sitemap') %>
+  <body class="background_v2">
+<%elsif ((controller_name=='pages')&&(action_name != 'sitemap'))%>
+  <body class="background_v2">
+<%else%>
+  <body>
+<%end%>
+
+  <div id="layout">
+
+    <div id="content">
+      <div id="title">
+        <div class="inner_title">
+         <div class="left">
+              <h1 class='cufon_museo_slab'><a href='/'>Unlimited Shelf</a></h1>
+              <p class="subtitle">The world map as we know it is about to change</p>
+          </div>
+          <div class="right">
+            <ul class="menu">
+        <li>
+          <a <%= (controller_name=='home') ? "class='pressed'" : '' %> href="/">
+            <span class="cufon_museo_slab">HOME</span></a>
+          </li>
+          <li>
+            <a <%= (controller_name=='features')? "class='pressed'" : '' %> href="/explore">
+              <span class="cufon_museo_slab">EXPLORE</span></a>
+            </li>
+            <li>
+              <a <%= ((controller_name=='events')&&(action_name=='index'))||((controller_name=='events')&&(action_name=='show')) ? "class='pressed'" : '' %> href="/events">
+                <span class="cufon_museo_slab">EVENTS</span></a>
+              </li>
+              <li>
+                <a <%= ((controller_name=='posts')&&(action_name=='index'))||((controller_name=='posts')&&(action_name=='show'))||(controller_name=='categories') ? "class='pressed'" : '' %> href="/blog">
+                  <span class="cufon_museo_slab">BLOG</span></a>
+                </li>
+                <li>
+                  <a <%= ((controller_name=='pages')&&(action_name=='show')) ? "class='pressed'" : '' %> href="/about">
+                    <span class="cufon_museo_slab">ABOUT</span></a>
+                  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+     <%= yield %>
+
+    </div> <!-- End content -->
+
+<% if (controller_name == 'home') %>
+  <%= render :partial => 'layouts/footer', :locals => {:extra_class => nil } %>
+<%else%>
+  <%= render :partial => 'layouts/footer', :locals => {:extra_class => 'v2' } %>
+<%end%>
+
+  </div> <!-- End layout -->
+
+</body>
+</html>

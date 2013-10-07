@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  template: template_postgis
+  encoding: unicode
+  database: ushelf_development
+  username: postgres
+  password:
+
+test:
+  adapter: postgresql
+  template: template_postgis
+  encoding: unicode
+  database: ushelf_test
+  username: postgres
+  password:
+    
+production:
+  adapter: postgresql
+  template: template_postgis
+  encoding: unicode
+  database: ushelf_production
+  username: postgres
+  password:    
